@@ -30,6 +30,9 @@ public class Tour {
     @Column(length = 2000)
     private String bullets;
 
+    @Column
+    private String keywords;
+
     @ManyToOne
     private TourPackage tourPackage;
 
@@ -41,13 +44,14 @@ public class Tour {
     @Enumerated
     private Region region;
 
-    public Tour(String title, String description, String blurb, Integer price, String duration, String bullets, TourPackage tourPackage, Difficulty difficulty, Region region) {
+    public Tour(String title, String description, String blurb, Integer price, String duration, String bullets, String keywords, TourPackage tourPackage, Difficulty difficulty, Region region) {
         this.title = title;
         this.description = description;
         this.blurb = blurb;
         this.price = price;
         this.duration = duration;
         this.bullets = bullets;
+        this.keywords = keywords;
         this.tourPackage = tourPackage;
         this.difficulty = difficulty;
         this.region = region;
@@ -111,6 +115,14 @@ public class Tour {
         this.bullets = bullets;
     }
 
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
     public TourPackage getTourPackage() {
         return tourPackage;
     }
@@ -145,6 +157,7 @@ public class Tour {
                 ", price=" + price +
                 ", duration='" + duration + '\'' +
                 ", bullets='" + bullets + '\'' +
+                ", keywords='" + keywords + '\'' +
                 ", tourPackage=" + tourPackage +
                 ", difficulty=" + difficulty +
                 ", region=" + region +
@@ -163,6 +176,7 @@ public class Tour {
                 Objects.equals(price, tour.price) &&
                 Objects.equals(duration, tour.duration) &&
                 Objects.equals(bullets, tour.bullets) &&
+                Objects.equals(keywords, tour.keywords) &&
                 Objects.equals(tourPackage, tour.tourPackage) &&
                 difficulty == tour.difficulty &&
                 region == tour.region;
@@ -170,6 +184,6 @@ public class Tour {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, blurb, price, duration, bullets, tourPackage, difficulty, region);
+        return Objects.hash(id, title, description, blurb, price, duration, bullets, keywords, tourPackage, difficulty, region);
     }
 }
